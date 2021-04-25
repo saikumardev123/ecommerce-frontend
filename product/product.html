@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ECommerce App</title>
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+      width: 100%;
+      height: 400px;
+    }
+     .image{
+       width:300px;
+       height: 255px;
+     }
+    </style>
+</head>
+
+<body style="height:1500px">
+
+<nav id="navbar" class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+</nav>
+
+<div class="container">
+	<br>  <h1 class="text-center">The Selected Product Details </h1>
+
+
+	
+<div class="card">
+	<div class="row">
+		<aside class="col-sm-5 border-right">
+<article class="gallery-wrap"> 
+<div class="img-big-wrap">
+    <br> <br> <br> <br> <br> <br> <br> <br> &nbsp;&nbsp;
+  <div> <img  id="image" style="margin-left:60px" width="300px" height="200px" src="https://rukminim1.flixcart.com/image/724/869/km6mxe80/shoe/t/o/u/6-kzx63-reebok-pugry2-neomnt-hargrn-original-imagf52nqt43hts8.jpeg?q=50"></div>
+</div> <!-- slider-product.// -->
+</article> <!-- gallery-wrap .end// -->
+		</aside>
+		<aside class="col-sm-7">
+<article class="card-body p-5">
+	<h3 id="name" class="title mb-3">Original Version of Some product name</h3>
+
+<p class="price-detail-wrap"> 
+	<span class="price h3 text-warning"> 
+		<span class="currency">US $</span><span id="price" class="num">1299</span>
+	</span>
+</p> <!-- price-detail-wrap .// -->
+<dl class="item-property">
+  <dt>Description</dt>
+  <dd><p id="description">Here goes description consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco </p></dd>
+</dl>
+<dl class="param param-feature">
+  <dt>Brand</dt>
+  <dd id="brand">12345611</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt>Seller</dt>
+  <dd id="seller">Black and white</dd>
+</dl>  <!-- item-property-hor .// -->
+  <!-- item-property-hor .// -->
+
+<hr>
+	<div class="row">
+		<div class="col-sm-5">
+			<dl class="param param-inline">
+			  <dt>Quantity: </dt>
+			  <dd>
+			  	<select class="form-control form-control-sm" style="width:70px;">
+			  		<option> 1 </option>
+			  		<option> 2 </option>
+			  		<option> 3 </option>
+			  	</select>
+			  </dd>
+			</dl>  <!-- item-property .// -->
+		</div> <!-- col.// -->
+	 <!-- col.// -->
+	</div> <!-- row.// -->
+	<hr>
+	<a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+	<a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+</article> <!-- card-body.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+</div> <!-- card.// -->
+</div>
+
+<script>
+   if(localStorage.getItem('productView') != null){
+    var product= JSON.parse(localStorage.getItem('productView'));
+    console.log('product',product);
+
+    document.getElementById("name").innerHTML=product.name;
+    document.getElementById("description").innerHTML=product.description;
+    document.getElementById("seller").innerHTML=product.seller;
+    document.getElementById("price").innerHTML=product.price;
+    document.getElementById("brand").innerHTML=product.brand;
+    document.getElementById("image").src=product.imageurl;
+
+
+   }
+    if(localStorage.getItem('currentUser') == null){
+          document.getElementById('navbar').innerHTML=`
+          
+          <a class="navbar-brand" href="../home/index.html">ECommerce</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="../login/login.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="../register/register.html">Register</a>
+    </li>
+  </ul>
+          
+          `
+    }
+    else
+    {
+        document.getElementById('navbar').innerHTML=`
+        
+        <a class="navbar-brand" href="../dashboard/userdashboard.html">ECommerce</a>
+  <ul class="navbar-nav">
+        <li class="nav-item">
+                <a class="nav-link" id="welcome">Welcome,${localStorage.getItem('currentUser')}</a>
+         </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="logout()">Logout</a>
+      </li>
+     
+      
+  </ul>
+        
+        `
+    }
+
+    function logout(){
+             
+             localStorage.removeItem('currentUser');
+             window.location.href="../login/login.html";
+          
+        }
+
+</script>
+
+</body>
+</html>
+
+
